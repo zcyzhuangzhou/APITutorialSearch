@@ -1,0 +1,8 @@
+py2neo>=4.1.3
+sqlalchemy
+pymysql
+beautifulsoup4
+gensim==3.6.0
+networkx==2.2
+numpy>=1.11.2
+spacy>=2.1.3

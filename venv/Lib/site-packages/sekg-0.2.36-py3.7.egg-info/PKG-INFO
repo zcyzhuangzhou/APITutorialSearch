@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: sekg
+Version: 0.2.36
+Summary: knowledge graph util for software engineering
+Home-page: https://github.com/FudanSELab/sekg
+Author: FDSEKG
+Author-email: lmwtclmwtc@outlook.com
+License: Apache License, Version 2.0
+Description: knowledge graph util for software engineering
+Keywords: pip,kg,se
+Platform: any

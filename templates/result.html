@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zxx" class="no-js">
+
+<head>
+    <style>
+        a{text-decoration:none;}
+        a:hover{ text-decoration:underline;}
+        .multiLineText {  /*设置文本为多行，如果超出长度用省略号代替*/
+                width: 1100px;
+                word-break: keep-all;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;  /*限制在一个块元素显示的文本的行数*/
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+    </style>
+
+
+
+	<!-- Mobile Specific Meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Favicon-->
+	<link rel="shortcut icon" href="../static/img/fav.png">
+	<!-- Author Meta -->
+	<meta name="author" content="codepixer">
+	<!-- Meta Description -->
+	<meta name="description" content="">
+	<!-- Meta Keyword -->
+	<meta name="keywords" content="">
+	<!-- meta character set -->
+	<meta charset="UTF-8">
+	<!-- Site Title -->
+	<title>Results</title>
+
+	<!--
+			Google Font
+			============================================= -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,500,600" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500i" rel="stylesheet">
+
+	<!--
+			CSS
+			============================================= -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/themify-icons/0.1.2/css/themify-icons.css">
+	<link rel="stylesheet" href="../static/css/linearicons.css">
+	<link rel="stylesheet" href="../static/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../static/css/bootstrap.css">
+	<link rel="stylesheet" href="../static/css/magnific-popup.css">
+	<link rel="stylesheet" href="../static/css/nice-select.css">
+	<link rel="stylesheet" href="../static/css/animate.min.css">
+	<link rel="stylesheet" href="../static/css/owl.carousel.css">
+	<link rel="stylesheet" href="../static/css/main.css">
+</head>
+
+<body>
+<form action="{{ url_for('result') }}" method="post">
+
+	<!-- Start Header Area -->
+	<header id="header" style="background-color: #36AFC4; height: 80px">
+		<div class="container">
+			<div class="row align-items-center justify-content-between d-flex" style="top: -70px; position: relative; height: 60px">
+				<div id="logo">
+					<a href="{{ url_for('home') }}"><img src="../static/img/logo4.png" alt="" title="" /></a>
+                    <a href="{{ url_for('home') }}" style="color: white; font-size: 20px; top: 4px; position: relative">&nbsp;CodeWisdom</a>
+				</div>
+                <div class="banner-content" style="top: -70px; position: relative;">
+                    <div class="input-wrap">
+{#                        <form action="" class="form-box d-flex justify-content-between">#}
+                            <input type="text" placeholder="Please input a query" class="form-control" name="query" style="border: none; float:left; width: 500px; height: 40px;" value="{{ result[0]['query'] }}">
+                            <button type="submit" class="btn search-btn" onclick="ajaxForm()" style="border: none; float:left;">Search</button>
+{#                        </form>#}
+                    </div>
+{#                    <div>#}
+{#                        <input type="text"#}
+{#                               value="Search methods:" readonly="readonly" style="text-align:right; font-size:15px; width: 250px; height:40px; background-color:transparent; border: none">#}
+{#                        <input type="text"#}
+{#                               name="search" value="{{ result[0]['searchMethod'] }}" readonly="readonly" style="text-align:left; font-size:15px; width: 250px; height:40px; background-color:transparent; border: none">#}
+{#                    </div>#}
+
+                </div>
+				<nav id="nav-menu-container">
+					<ul class="nav-menu">
+						<li><a href="{{ url_for('home') }}">Home</a></li>
+						<li><a href="{{ url_for('model') }}">Model</a></li>
+						<li><a href="{{ url_for('about') }}">About</a></li>
+					</ul>
+				</nav><!-- #nav-menu-container -->
+			</div>
+		</div>
+	</header>
+	<!-- End Header Area -->
+
+	<!-- Start Banner Area -->
+	<section style="height: 80px; background-color: #36AFC4">
+		<div class="container">
+
+		</div>
+	</section>
+
+	<section style="height: 50px;">
+		<div class="container">
+            <div>
+                <input type="text" value="Search methods:" readonly="readonly" style="color:#777777; text-align:center; font-size:15px;
+                    width: 140px; height:40px; background-color:transparent; border: none; outline: none">
+                <input type="text" name="search" value="{{ result[0]['searchMethod'] }}" readonly="readonly" style="color:#777777; text-align:left; font-size:15px;
+                    width: 170px; height:40px; background-color:transparent; border: none; outline: none">
+                <input type="text" value="(Search time {{ result[0]['time'] }}s)" readonly="readonly" style="color:#777777; text-align:left; font-size:15px;
+                    width: 140px; height:40px; background-color:transparent; border: none; outline: none">
+            </div>
+
+		</div>
+	</section>
+	<!-- End Banner Area -->
+
+	<!-- Start Align Area -->
+
+
+    <section>
+    {% for item in result %}
+        <div class="whole-wrap" style="position:relative; height: 180px;">
+            <div class="container">
+                <a href="{{ item['url'] }}" target="_blank"><h4 style="color: #007bff">&nbsp;&nbsp;{{ item['title'] }}</h4></a>
+                <a href="{{ item['url'] }}" target="_blank" style="color: #006621">&nbsp;&nbsp;&nbsp;&nbsp;{{ item['url'] }}</a>
+                <div class="multiLineText" title="{{ item['JDK'] }}">
+                    <div class="col-lg-12">
+                        <blockquote>
+                            {{ item['JDK'] }}
+                        </blockquote>
+                    </div>
+                </div>
+                <a style="font-size: 15px;color: #007bff">&nbsp;&nbsp;&nbsp;&nbsp;score: {{ item['score'] }}</a>
+{#                <div style="font-size: 16px; color: #007bff">#}
+{#                    &nbsp;&nbsp;&nbsp;score: {{ item['score'] }}#}
+{#                </div>#}
+            </div>
+        </div>
+    {% endfor %}
+    </section>
+
+	<!-- End Align Area -->
+
+
+	<!-- ####################### Start Scroll to Top Area ####################### -->
+	<div id="back-top">
+		<a title="Go to Top" href="#"></a>
+	</div>
+	<!-- ####################### End Scroll to Top Area ####################### -->
+
+	<script src="../static/js/vendor/jquery-2.2.4.min.js "></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js " integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q "
+	 crossorigin="anonymous "></script>
+	<script src="../static/js/vendor/bootstrap.min.js "></script>
+	<script type="text/javascript " src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA "></script>
+	<script src="../static/js/easing.min.js "></script>
+	<script src="../static/js/hoverIntent.js "></script>
+	<script src="../static/js/superfish.min.js "></script>
+	<script src="../static/js/jquery.ajaxchimp.min.js "></script>
+	<script src="../static/js/jquery.magnific-popup.min.js "></script>
+	<script src="../static/js/owl.carousel.min.js "></script>
+	<script src="../static/js/owl-carousel-thumb.min.js "></script>
+	<script src="../static/js/jquery.sticky.js "></script>
+	<script src="../static/js/jquery.nice-select.min.js "></script>
+	<script src="../static/js/parallax.min.js "></script>
+	<script src="../static/js/waypoints.min.js "></script>
+	<script src="../static/js/wow.min.js "></script>
+	<script src="../static/js/jquery.counterup.min.js "></script>
+	<script src="../static/js/mail-script.js "></script>
+	<script src="../static/js/main.js "></script>
+
+    </form>
+<script>
+    function ajaxForm(){
+        $.ajax({
+            url:"result",
+            type:'POST',
+            data:{'query': query, 'search': value},
+            dataType:"json"
+        })
+    }
+</script>
+</body>
+
+</html>
